@@ -26,14 +26,4 @@ Python packages:
 
 * fabric (``conda install fabric`` or ``pip install fabric``)
 
-Introduction
-============
-
-latex2rtf [#latex2rtf]_
-
-References
-==========
-
-.. [#latex2rtf] 
-
 .. NOTE!  import latexcodec
