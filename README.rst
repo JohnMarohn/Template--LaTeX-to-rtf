@@ -14,20 +14,17 @@ Here I collect a set of helper files useful for creating a Microsoft Word docume
 Requires
 ========
 
-* latex2rtf
+Programs:
 
-* pandoc
+* latex2rtf (`project <http://latex2rtf.sourceforge.net/index.html>`__ and `download <https://sourceforge.net/projects/latex2rtf/>`__)
 
-Python packages
+* pandoc (`project <http://pandoc.org/>`__ and `installing <http://pandoc.org/installing.html>`__)
 
-* pybtex
+Python packages:
 
-* fabric
+* pybtex (``pip install pybtex``)
 
-Install ::
-
-    pip install pybtex
-    conda install fabric
+* fabric (``conda install fabric`` or ``pip install fabric``)
 
 Introduction
 ============
@@ -37,6 +34,6 @@ latex2rtf [#latex2rtf]_
 References
 ==========
 
-.. [#latex2rtf] http://latex2rtf.sourceforge.net/index.html
+.. [#latex2rtf] 
 
 .. NOTE!  import latexcodec
