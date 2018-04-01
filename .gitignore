@@ -178,3 +178,11 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~[0-9]*
+
+# Python
+*.pyc
+
+# Project specfici
+*.docx
+*.rtf
+*.pdf
