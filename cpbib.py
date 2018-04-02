@@ -6,6 +6,10 @@ John A. Marohn (jam99@cornell.edu)
 2018.03.31
 
 Make a copy of your master BibTeX file in the /refs subdirectory.
+
+Impliment logging following 
+
+    https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/
 """
 
 import os
@@ -80,17 +84,7 @@ def processaux(aux):
     for bibkey in ref_key_array__sorted:
         logger.info(" {0}".format(bibkey))
 
-
     return ref_key_array__sorted
-
-def logbibkeys(bibkeys):
-    """Write the list of bibkeys to cpbib.log."""
-
-    fp_log = open('cpbib.log', 'w')
-    for bibkey in bibkeys:
-        fp_log.write("{0}\n".format(bibkey))
-    fp_log.write("references total = {{{}}}\n".format(len(bibkeys)))
-    fp_log.flush()
 
 def processpdf(pdf_dir, bibkeys, NOCOPY):
     """Return a list consisting of the names of the pdf files whose names
@@ -216,7 +210,7 @@ if __name__ == "__main__":
     Make a copy of your master BibTeX file in the /refs subdirectory.
     """
 
-    optParser = OptionParser(usage=usage)  # parses command line options
+    optParser = OptionParser(usage=usage)
     optParser = addoptions(optParser)
     (options, remainingargs) = optParser.parse_args()
 
@@ -236,7 +230,6 @@ if __name__ == "__main__":
     TEX_MAIN = configParser.get('tex', 'main')
     PDF_DIR = configParser.get('pdf', 'master')
     
-    # https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/
     logger = logging.getLogger(__name__)    
     logger.setLevel(logging.DEBUG)
     
