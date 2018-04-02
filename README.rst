@@ -7,9 +7,11 @@ Template--LaTeX-to-rtf
 Summary
 =======
 
-Here I present some Python helper scripts for creating a Microsoft Word document from a TeX document.
+Here I include a ``tex`` file that can be converted to a Microsoft Word document (``rtf`` or ``docx`` format).   I moreover provide Python scripts for carrying out the conversion.
 
-Although I do most of my scholarly writing in LaTeX, it is often necessary to write in Microsoft Word when collaborating with others or writing grant reports.  Yet I have built up a large bibliographic database in LaTeX, and it would be nice to harness that database when preparing Microsoft Word documents.  Here I present an example ``tex`` file that can be converted into a ``docx`` or ``rtf`` file openable by Microsoft Word.  I also provide some Python scripts for carrying out the conversion.
+Although I do most of my scholarly writing in LaTeX, it is often necessary to write in Microsoft Word when collaborating with others or writing grant reports.  Yet I have built up a large bibliographic database in LaTeX, and it would be nice to harness that database when preparing the bibliography in a Microsoft Word document.  Here I present an example ``tex`` file with equations, references, and a figure and describe how to convert it to a ``docx`` or ``rtf`` file openable by Microsoft Word.  The bibliography is created from a LaTeX ``bib`` file.
+
+The source file is ``test.tex``.  The resulting ``test.rtf`` and ``test.docx`` files can be found in the ``/output`` directory of this repository.  For comparison I include a pdf-format file, ``test.pdf``, created directly from the source file using pdflatex and bibtex.
 
 Manifest
 ========
@@ -20,7 +22,7 @@ This repository contains the following files
 
 * ``LICENSE`` -- GNU general public license (Version 3, 29 June 2007)
 
-* ``test.tex`` -- example text with citations, equations, and a figure
+* ``test.tex`` -- example source file with citations, equations, and a figure
 
 * ``fabfile.py`` -- Python file containing commands to compile to ``rtf`` and ``docx`` formats
 
@@ -82,9 +84,9 @@ In order to be compatible with latex2rtf and pandoc, the ``tex`` file should use
 
 * graphicx,
 
-* geometry,
+* geometry, and
 
-* hyperref, and 
+* hyperref.
 
 It uses 
 
