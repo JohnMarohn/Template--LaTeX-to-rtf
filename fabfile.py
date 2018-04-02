@@ -28,7 +28,7 @@ def docx():
     with settings(warn_only=True):
 
         local("pandoc -s {tex} --filter pandoc-citeproc "
-            "--natbib --bibliography {bib} "
+            "--bibliography {bib} "
             "--csl {csl} -o {doc}.docx".format(**env))
 
     if platform == "darwin":
