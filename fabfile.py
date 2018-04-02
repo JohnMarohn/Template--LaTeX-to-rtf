@@ -42,10 +42,10 @@ def rtf():
 
     with settings(warn_only=True):
 
-        local("latex {doc}".format(**env))
+        local("pdflatex {doc}".format(**env))
         local("bibtex {doc}".format(**env))
-        local("latex {doc}".format(**env))
-        local("latex {doc}".format(**env))
+        local("pdflatex {doc}".format(**env))
+        local("pdflatex {doc}".format(**env))
         local("latex2rtf {doc}".format(**env))
 
     if platform == "darwin":
