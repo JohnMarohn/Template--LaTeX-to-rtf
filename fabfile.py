@@ -6,30 +6,39 @@ from fabric.api import task, local, env, settings
 import time
 import sys
 import ConfigParser
+from sys import platform
 
 configParser = ConfigParser.RawConfigParser()
-configFilePath = "fabfile.cfg"
-configParser.read(configFilePath)
+configParser.read("fabfile.cfg")
 
 env.bib = configParser.get('bib', 'local')
 env.tex = configParser.get('tex', 'main')
 env.doc = configParser.get('tex', 'main').rstrip("tex").rstrip(".")
+env.csl = configParser.get('pandoc', 'csl')
 
 print(" bib = {{{bib}}}".format(**env))
 print(" tex = {{{tex}}}".format(**env))
 print(" doc = {{{doc}}}".format(**env))
+print(" csl = {{{csl}}}".format(**env))
 
 @task
 def docx():
-    """convert tex document to docx format.  Run first: python cpbib.py --min."""
+    """Convert tex document to docx format using pandoc and open with Microsoft Word.  Run first: python cpbib.py --min."""
     
     with settings(warn_only=True):
 
-        local("pandoc -s {tex} --filter pandoc-citeproc --natbib --bibliography {bib} --csl csl/american-chemical-society-with-titles-sentence-case-doi.csl  -o {doc}.docx".format(**env))
+        local("pandoc -s {tex} --filter pandoc-citeproc "
+            "--natbib --bibliography {bib} "
+            "--csl {csl} -o {doc}.docx".format(**env))
+
+    if platform == "darwin":
+        local("open -a 'Microsoft Word' {doc}.docx".format(**env))
+    else:
+        print("open {doc}.docx manually".format(**env))
 
 @task
 def rtf():
-    """convert tex document to rtf format"""
+    """Convert tex document to rtf format using latex2rtf and open with Microsoft Word."""
 
     with settings(warn_only=True):
 
@@ -38,20 +47,15 @@ def rtf():
         local("latex {doc}".format(**env))
         local("latex {doc}".format(**env))
         local("latex2rtf {doc}".format(**env))
-    
-@task
-def odocx():
-    """open the docx document with Microsoft word (OS X only)"""
-    local("open -a 'Microsoft Word' {doc}.docx".format(**env)) 
 
-@task
-def ortf():
-    """open the rtf document with Microsoft word (OS X only)"""
-    local("open -a 'Microsoft Word' {doc}.rtf".format(**env))
+    if platform == "darwin":
+        local("open -a 'Microsoft Word' {doc}.rtf".format(**env))
+    else:
+        print("open {doc}.docx manually".format(**env))
 
 @task
 def clean():
-    """Remove Vitae aux files"""
+    """Remove auxiliary files"""
     globs = [
             '*.aux',
             '*.bak',
