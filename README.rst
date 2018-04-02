@@ -241,7 +241,7 @@ When I run this command it outputs ::
      (Ernst1987,None)
      (Kuehn2008feb,Kuehn2008feb advances in mechanical detection of magnetic resonance 10.1063:1.2834737 *.pdf)
 
-I can see that no associated ``pdf`` file was found for the first reference, ``Ernst1987`` (a book), while a ``pdf`` with a very long name as found for the second reference, ``Kuehn2008feb``.  Now run the program again to actually copy the files::
+I can see that no associated ``pdf`` file was found for the first reference, ``Ernst1987`` (a book), while a ``pdf`` with a very long name was found for the second reference, ``Kuehn2008feb``.  Now run the program again to actually copy the files::
 
     python cpbib.py --pdf
 
@@ -249,7 +249,7 @@ If I want to see what was done, I can print out the log file ::
 
     cat cpbib.log
 
-which outputs ::
+which for me outputs ::
 
          master bib = {/Users/jam99/Dropbox/UNSORTED/UNSORTED_bib.bib}
           local bib = {bib/jam99.bib}
